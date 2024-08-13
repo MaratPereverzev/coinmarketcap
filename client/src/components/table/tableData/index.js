@@ -1,9 +1,9 @@
 const TableData = (props) => {
-  const { sx, caption, ...other } = props;
+  const { sx, value, ...other } = props;
 
   return (
     <td style={{ ...sx }} {...other}>
-      {caption ?? other?.value ?? other?.children}
+      {value ?? other?.children}
     </td>
   );
 };

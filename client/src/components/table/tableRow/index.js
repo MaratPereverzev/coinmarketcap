@@ -2,20 +2,20 @@ import { TableHead } from "../tableHead";
 import { TableData } from "../tableData";
 
 const TableRow = (props) => {
-  const { sx, values, isHead, ...other } = props;
+  const { sx, items, isHead, ...other } = props;
+  const style = { borderBottom: "1px solid #dddddd", ...sx };
 
-  if (Array.isArray(values) && values.length > 0) {
+  if (Array.isArray(items) && items.length > 0) {
     if (isHead) {
       return (
-        <tr
-          className="tableRow"
-          style={{ borderBottom: "1px solid #dddddd", ...sx }}
-        >
-          {values.map((value, index) => {
-            const caption = typeof value === "string" ? value : value?.caption;
-
+        <tr className="tableRow" style={style}>
+          {items.map((item, index) => {
             return (
-              <TableHead key={index} caption={caption} sx={{ ...value?.sx }} />
+              <TableHead
+                key={index}
+                value={item?.value ?? item}
+                sx={{ ...item?.sx }}
+              />
             );
           })}
         </tr>
@@ -23,16 +23,17 @@ const TableRow = (props) => {
     }
 
     return (
-      <tr className="tableRow" style={{ ...sx }}>
-        {values.map((value, index) => {
-          const caption = typeof value === "string" ? value : value?.caption;
-
+      <tr
+        className="tableRow"
+        style={{ borderBottom: "1px solid #dddddd", ...sx }}
+      >
+        {items.map((item, index) => {
           return (
             <TableData
               key={index}
-              data-cell={value?.dataCell}
-              caption={caption}
-              sx={{ borderBottom: "1px solid #dddddd", ...value?.sx }}
+              data-cell={item?.dataCell}
+              value={item?.value ?? item}
+              style={{ ...style, ...item?.sx }}
             />
           );
         })}
@@ -41,10 +42,7 @@ const TableRow = (props) => {
   }
 
   return (
-    <tr
-      className="tableRow"
-      style={{ borderBottom: "1px solid #dddddd", ...sx }}
-    >
+    <tr className="tableRow" style={style}>
       {other.children}
     </tr>
   );

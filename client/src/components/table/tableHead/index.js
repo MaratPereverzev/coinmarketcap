@@ -1,8 +1,8 @@
 const TableHead = (props) => {
-  const { sx, caption, ...other } = props;
+  const { sx, value, ...other } = props;
   return (
     <th className="tableHead" style={{ fontSize: "12px", ...sx }} {...other}>
-      {caption ?? other?.children}
+      {value ?? other?.children}
     </th>
   );
 };
