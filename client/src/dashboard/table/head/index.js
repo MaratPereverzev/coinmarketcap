@@ -1,17 +1,8 @@
 import { TableRow, Box, Button } from "@components";
 import { dispatchEvent } from "@utils";
 
-const tableColumns = [
-  { name: "", field: "", direction: false },
-  { name: "Name", field: "name", direction: false },
-  { name: "Symbol", field: "symbol", direction: false },
-  { name: "Price", field: "priceUsd", direction: false },
-  { name: "Market Cap.", field: "marketCapUsd", direction: false },
-  { name: "Volume(24h)", field: "volumeUsd24Hr", direction: false },
-];
-
 const Default = (props) => {
-  const { sort } = props;
+  const { sort, tableColumns } = props;
 
   return (
     <TableRow
@@ -21,22 +12,32 @@ const Default = (props) => {
             caption={item.name}
             variant="text"
             sxText={{
+              fontWeight: "900",
               margin: 0,
               color: sort?.sort === item.field && "#3861fb",
             }}
             onClick={() => {
-              dispatchEvent("sortData", {
-                sort: item.field,
-                direction: item.direction,
-              });
+              if (item?.direction !== null && item.direction !== undefined) {
+                dispatchEvent("sortData", {
+                  sort: item.field,
+                  direction: item.direction,
+                });
 
-              item.direction = !item.direction;
+                item.direction = !item.direction;
+              }
             }}
           />
         </Box>
       ))}
       isHead
-      sx={{ textAlign: "start" }}
+      sx={{
+        textAlign: "start",
+        position: "sticky",
+        top: "0px",
+        overflow: "hidden",
+        backgroundColor: "white",
+        height: "50px",
+      }}
     />
   );
 };

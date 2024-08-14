@@ -1,7 +1,12 @@
 import { Box, Button, TableRow } from "@components";
 import { useFetch, useTimeout } from "@hooks";
-import { addEventListener, convertNumber, dispatchEvent } from "@utils";
-import { useEffect } from "react";
+import {
+  addEventListener,
+  convertNumber,
+  dispatchEvent,
+  objectToQuery,
+} from "@utils";
+import { useEffect, useState } from "react";
 
 const recordsToShow = [
   "",
@@ -14,15 +19,16 @@ const recordsToShow = [
 
 const Default = (props) => {
   const { sort, setSort } = props;
+  const [query, setQuery] = useState({});
 
   const { response, fetchData } = useFetch({
-    url: "https://api.coincap.io/v2/assets",
+    baseURL: "https://api.coincap.io/v2/assets",
     method: "GET",
     responseType: "json",
   });
 
   const { timeoutDispatch, timeoutClear } = useTimeout(() => {
-    fetchData();
+    fetchData({ url: objectToQuery(query) });
   }, 10000);
 
   useEffect(
@@ -33,12 +39,20 @@ const Default = (props) => {
     [setSort]
   );
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  useEffect(
+    () =>
+      addEventListener("queryChange", ({ detail }) => {
+        setQuery((prev) => ({ ...prev, ...detail }));
+      }),
+    []
+  );
 
   useEffect(() => {
-    timeoutDispatch();
+    fetchData({ url: objectToQuery(query) });
+  }, [fetchData, query]);
+
+  useEffect(() => {
+    timeoutDispatch({ url: objectToQuery(query) });
 
     return () => timeoutClear();
   });
@@ -82,7 +96,13 @@ const Default = (props) => {
                   </Box>
                 );
               }
-              if (key === "name") {
+              if (key === "rank")
+                return (
+                  <Box flex center gap sx={{ padding: "10px" }}>
+                    {item?.[key]}
+                  </Box>
+                );
+              else if (key === "name")
                 return (
                   <Box flex ai gap sx={{ padding: "10px" }}>
                     {key === "name" && (
@@ -95,13 +115,12 @@ const Default = (props) => {
                     {convertNumber(item?.[key])}
                   </Box>
                 );
-              } else {
+              else
                 return (
                   <Box flex center gap sx={{ padding: "10px" }}>
                     {convertNumber(item?.[key])}
                   </Box>
                 );
-              }
             })}
             sx={{ fontSize: "14px", height: "55px", textAlign: "center" }}
           />
