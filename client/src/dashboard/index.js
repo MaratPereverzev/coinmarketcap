@@ -1,47 +1,25 @@
-import { Table, TableRow, Box, TableData } from "@components";
+import { Box, Snackbar } from "@components";
+import { Header } from "./header";
+import { Table } from "./table";
 
-function Dashboard() {
-  const tableColumns = [
-    { caption: "#", sx: { textAlign: "start" } },
-    "Name",
-    "Price",
-    "1h%",
-    "24h%",
-    "7d%",
-    "Market Cap",
-    "Valume(24h)",
-    "Circulating supply",
-  ];
-
+const Dashboard = () => {
   return (
     <Box
+      flex
+      column
+      center
+      grow
       className="App"
       sx={{
         fontFamily:
           "Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif",
       }}
     >
-      <Table
-        sx={{
-          borderCollapse: "collapse",
-        }}
-        tableHeadData={
-          <>
-            <TableRow values={tableColumns} isHead sx={{ textAlign: "end" }} />
-          </>
-        }
-        tableBodyData={
-          <>
-            <TableRow sx={{ fontSize: "14px" }}>
-              <TableData value="hello" />
-              <TableData value="hello" />
-              <TableData value="hello" />
-            </TableRow>
-          </>
-        }
-      />
+      <Snackbar />
+      <Header />
+      <Table />
     </Box>
   );
-}
+};
 
 export default Dashboard;

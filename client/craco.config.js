@@ -11,6 +11,7 @@ module.exports = {
     alias: {
       "@components": resolvePath("./src/components"),
       "@context": resolvePath("./src/context"),
+      "@hooks": resolvePath("./src/hooks"),
       "@utils": resolvePath("./src/utils"),
       "@pages": resolvePath("./src/pages"),
     },
