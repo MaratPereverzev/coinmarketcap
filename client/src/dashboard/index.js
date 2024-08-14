@@ -1,6 +1,5 @@
 import { Box, Snackbar } from "@components";
-import { Header } from "./header";
-import { Table } from "./table";
+import { Page } from "@pages";
 
 const Dashboard = () => {
   return (
@@ -16,8 +15,7 @@ const Dashboard = () => {
       }}
     >
       <Snackbar />
-      <Header />
-      <Table />
+      <Page />
     </Box>
   );
 };

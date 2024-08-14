@@ -77,7 +77,7 @@ const Default = (props) => {
       {response?.data.data.map((item) => {
         return (
           <TableRow
-            key={item.symbol}
+            key={item.rank}
             items={recordsToShow.map((key, index) => {
               if (index === 0) {
                 return (

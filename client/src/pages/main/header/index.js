@@ -8,8 +8,14 @@ const Header = () => {
   }, 1500);
 
   return (
-    <Box flex ai jc="flex-end" sx={{ width: "100%", padding: "10px 0" }}>
+    <Box flex ai jc="space-between" sx={{ width: "100%", padding: "10px 0" }}>
+      <img
+        src="https://www.tokocrypto.com/static/cloud-web-ui/cloud-toko/static/images/homepage/partner/coinmarketcap-v2.svg"
+        alt="logo"
+        style={{ padding: 0, margin: 0 }}
+      />
       <Input
+        variant="standard"
         placeholder="search"
         onChange={() => (e) => {
           timeoutReset(e);

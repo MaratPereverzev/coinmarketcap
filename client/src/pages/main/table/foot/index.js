@@ -1,8 +1,10 @@
 import { Pagination } from "@components";
+import { dispatchEvent } from "@utils";
+
 const Default = () => {
   return (
     <Pagination
-      count={2000}
+      count={2000 / 100}
       shape="rounded"
       sx={{
         padding: 1,
@@ -14,6 +16,9 @@ const Default = () => {
         ".Mui-selected": {
           backgroundColor: "#3861fb",
         },
+      }}
+      onChange={(e, page) => {
+        dispatchEvent("queryChange", { offset: (page - 1) * 100 });
       }}
     />
   );
