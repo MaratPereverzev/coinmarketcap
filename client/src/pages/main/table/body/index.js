@@ -5,6 +5,7 @@ import {
   convertNumber,
   dispatchEvent,
   objectToQuery,
+  prepareData,
 } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -52,24 +53,10 @@ const Default = (props) => {
   }, [fetchData, query]);
 
   useEffect(() => {
+    prepareData(response?.data.data, sort, recordsToShow);
     timeoutDispatch({ url: objectToQuery(query) });
 
     return () => timeoutClear();
-  });
-
-  response?.data.data.sort(function (item1, item2) {
-    let result;
-    if (sort.direction === false) {
-      result = Number.parseFloat(item2[sort.sort] - item1[sort.sort]);
-      if (isNaN(result))
-        return item1[sort.sort].localeCompare(item2[sort.sort]);
-      return result;
-    } else {
-      result = Number.parseFloat(item1[sort.sort] - item2[sort.sort]);
-      if (isNaN(result))
-        return item2[sort.sort].localeCompare(item1[sort.sort]);
-      return result;
-    }
   });
 
   return (
@@ -122,7 +109,15 @@ const Default = (props) => {
                   </Box>
                 );
             })}
-            sx={{ fontSize: "14px", height: "55px", textAlign: "center" }}
+            sx={{
+              fontSize: "14px",
+              height: "55px",
+              textAlign: "center",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              dispatchEvent("changePage", { page: item.name.toLowerCase() });
+            }}
           />
         );
       })}

@@ -8,7 +8,7 @@ const TableRow = (props) => {
   if (Array.isArray(items) && items.length > 0) {
     if (isHead) {
       return (
-        <tr className="tableRow" style={style}>
+        <tr className="tableRow" style={style} {...other}>
           {items.map((item, index) => {
             return (
               <TableHead
@@ -26,6 +26,7 @@ const TableRow = (props) => {
       <tr
         className="tableRow"
         style={{ borderBottom: "1px solid #dddddd", ...sx }}
+        {...other}
       >
         {items.map((item, index) => {
           return (
@@ -42,7 +43,7 @@ const TableRow = (props) => {
   }
 
   return (
-    <tr className="tableRow" style={style}>
+    <tr className="tableRow" style={style} {...other}>
       {other.children}
     </tr>
   );

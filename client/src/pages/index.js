@@ -1,7 +1,20 @@
 import { Main } from "./main";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { addEventListener, setPageHash, getLocalStorageValue } from "@utils";
+
 const Default = () => {
-  const [page] = useState("main");
+  const [page, setPage] = useState(
+    () => getLocalStorageValue("page") ?? "main"
+  );
+
+  useEffect(
+    () =>
+      addEventListener("changePage", ({ detail }) => {
+        setPageHash(detail.page, true);
+        setPage(detail.page);
+      }),
+    []
+  );
   return <>{page === "main" && <Main />}</>;
 };
 

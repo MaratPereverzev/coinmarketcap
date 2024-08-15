@@ -7,11 +7,11 @@ const Dashboard = () => {
       flex
       column
       center
-      grow
       className="App"
       sx={{
         fontFamily:
           "Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif",
+        width: "100%",
       }}
     >
       <Snackbar />

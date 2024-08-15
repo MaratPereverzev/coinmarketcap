@@ -1,4 +1,4 @@
-import { TableRow, Box, Button } from "@components";
+import { TableRow, Box, Button, Icon } from "@components";
 import { dispatchEvent } from "@utils";
 
 const Default = (props) => {
@@ -8,6 +8,10 @@ const Default = (props) => {
     <TableRow
       items={tableColumns.map((item) => (
         <Box flex center>
+          <Icon
+            icon={item.direction === false ? "arrowUp" : "arrowDown"}
+            sx={{ opacity: item.field === sort.sort ? 1 : 0 }}
+          />
           <Button
             caption={item.name}
             variant="text"
