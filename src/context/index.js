@@ -1,4 +1,4 @@
 import { createContext } from "react";
-const responseContext = createContext(null);
+const dataContext = createContext(null);
 
-export { responseContext };
+export { dataContext };

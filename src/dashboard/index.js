@@ -6,7 +6,6 @@ const Dashboard = () => {
     <Box
       flex
       column
-      center
       className="App"
       sx={{
         fontFamily:

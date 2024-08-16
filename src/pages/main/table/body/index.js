@@ -1,5 +1,6 @@
 import { Box, Button, TableRow } from "@components";
 import { useFetch, useTimeout } from "@hooks";
+import "./style.css";
 import {
   addEventListener,
   convertNumber,
@@ -7,7 +8,8 @@ import {
   objectToQuery,
   prepareData,
 } from "@utils";
-import { useEffect, useState } from "react";
+import { dataContext } from "@context";
+import { useEffect, useState, useContext } from "react";
 
 const recordsToShow = [
   "",
@@ -22,6 +24,8 @@ const Default = (props) => {
   const { sort, setSort } = props;
   const [query, setQuery] = useState({});
 
+  const { itemsPerPage } = useContext(dataContext);
+
   const { response, fetchData } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
     method: "GET",
@@ -29,7 +33,7 @@ const Default = (props) => {
   });
 
   const { timeoutDispatch, timeoutClear } = useTimeout(() => {
-    fetchData({ url: objectToQuery(query) });
+    fetchData({ url: objectToQuery({ ...query, limit: itemsPerPage }) });
   }, 10000);
 
   useEffect(
@@ -49,12 +53,12 @@ const Default = (props) => {
   );
 
   useEffect(() => {
-    fetchData({ url: objectToQuery(query) });
-  }, [fetchData, query]);
+    fetchData({ url: objectToQuery({ ...query, limit: itemsPerPage }) });
+  }, [fetchData, query, itemsPerPage]);
 
   useEffect(() => {
     prepareData(response?.data.data, sort, recordsToShow);
-    timeoutDispatch({ url: objectToQuery(query) });
+    timeoutDispatch({ url: objectToQuery({ ...query, limit: itemsPerPage }) });
 
     return () => timeoutClear();
   });
@@ -72,12 +76,15 @@ const Default = (props) => {
                     <Button
                       caption="Add"
                       variant="text"
-                      sx={{ color: "rgb(88, 102, 126)" }}
-                      onClick={() => {
+                      sx={{
+                        color: "rgb(88, 102, 126)",
+                      }}
+                      onClick={(e) => {
                         dispatchEvent("snackbarTrigger", {
                           message: "Added successfully",
                           status: "success",
                         });
+                        e.stopPropagation();
                       }}
                     />
                   </Box>
@@ -91,7 +98,14 @@ const Default = (props) => {
                 );
               else if (key === "name")
                 return (
-                  <Box flex ai gap sx={{ padding: "10px" }}>
+                  <Box
+                    flex
+                    ai
+                    gap
+                    sx={{
+                      padding: "10px",
+                    }}
+                  >
                     {key === "name" && (
                       <img
                         src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
@@ -104,7 +118,14 @@ const Default = (props) => {
                 );
               else
                 return (
-                  <Box flex center gap sx={{ padding: "10px" }}>
+                  <Box
+                    flex
+                    center
+                    gap
+                    sx={{
+                      padding: "10px",
+                    }}
+                  >
                     {convertNumber(item?.[key])}
                   </Box>
                 );
@@ -116,7 +137,10 @@ const Default = (props) => {
               cursor: "pointer",
             }}
             onClick={() => {
-              dispatchEvent("changePage", { page: item.name.toLowerCase() });
+              dispatchEvent("changePage", {
+                page: "coin",
+                coin: item.name,
+              });
             }}
           />
         );

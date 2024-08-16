@@ -3,7 +3,10 @@ import { TableData } from "../tableData";
 
 const TableRow = (props) => {
   const { sx, items, isHead, ...other } = props;
-  const style = { borderBottom: "1px solid #dddddd", ...sx };
+  const style = {
+    borderBottom: "1px solid #dddddd",
+    ...sx,
+  };
 
   if (Array.isArray(items) && items.length > 0) {
     if (isHead) {
@@ -23,11 +26,7 @@ const TableRow = (props) => {
     }
 
     return (
-      <tr
-        className="tableRow"
-        style={{ borderBottom: "1px solid #dddddd", ...sx }}
-        {...other}
-      >
+      <tr className="tableRow" style={style} {...other}>
         {items.map((item, index) => {
           return (
             <TableData

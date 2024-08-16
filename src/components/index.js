@@ -7,3 +7,4 @@ export * from "./tooltip";
 export * from "./pagination";
 export * from "./input";
 export * from "./icon";
+export * from "./popover";
