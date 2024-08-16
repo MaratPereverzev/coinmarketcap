@@ -28,6 +28,8 @@ const Default = () => {
     () => getLocalStorageValue("page") ?? "main"
   );
 
+  console.log(page);
+
   useEffect(
     () =>
       addEventListener("changePage", ({ detail }) => {
@@ -42,6 +44,7 @@ const Default = () => {
       addEventListener(
         "popstate",
         () => {
+          console.log("ok");
           setPage(getPageHash());
         },
         window
