@@ -1,0 +1,8 @@
+@media screen and (width < 800px) {
+  .coinPage {
+    display: block !important;
+  }
+  .coinPage > .stats {
+    border-right: none !important;
+  }
+}

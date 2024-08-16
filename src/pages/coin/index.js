@@ -2,6 +2,7 @@ import { Box, Chip, Loading, Text, Chart } from "@components";
 import { useFetch, useTimeout } from "@hooks";
 import { convertNumber } from "@utils";
 import { useEffect } from "react";
+import "./styles.css";
 
 const dataRows = [
   { name: "Market Cap.", field: "marketCapUsd" },
@@ -35,7 +36,7 @@ const Coin = (props) => {
   const data = response?.data?.data;
 
   return (
-    <Box flex sx={{ height: "100%" }}>
+    <Box className="coinPage" flex sx={{ height: "100%" }}>
       {(loading && <Loading />) || (
         <>
           <Box
@@ -45,6 +46,7 @@ const Coin = (props) => {
               padding: "20px",
               borderRight: "1px solid #ededed",
             }}
+            className="stats"
           >
             <Box flex ai gap="5px">
               <img
@@ -93,7 +95,14 @@ const Coin = (props) => {
               ))}
             </Box>
           </Box>
-          <Box flex column ai grow sx={{ padding: "20px" }}>
+          <Box
+            flex
+            column
+            ai
+            grow
+            sx={{ padding: "20px", height: "100%" }}
+            classname="additionalData"
+          >
             <Chart />
           </Box>
         </>
