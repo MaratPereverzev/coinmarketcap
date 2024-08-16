@@ -11,6 +11,7 @@ const Dashboard = () => {
         fontFamily:
           "Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif",
         width: "100%",
+        height: "100%",
       }}
     >
       <Snackbar />

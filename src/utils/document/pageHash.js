@@ -9,4 +9,12 @@ const setPageHash = (pathname, toLocalStorage) => {
   if (toLocalStorage === true) localStorage.setItem("page", pathname);
 };
 
-export { getPageHash, setPageHash };
+const popPage = (pathname, toLocalStorage) => {
+  window.history.pushState(
+    null,
+    null,
+    window.location.pathname.replace("/", "")
+  );
+};
+
+export { getPageHash, setPageHash, popPage };

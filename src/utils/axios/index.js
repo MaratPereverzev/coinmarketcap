@@ -14,10 +14,10 @@ const objectToQuery = (obj) => {
   return "";
 };
 
-const prepareData = (arr, sort, recordsToShow) => {
+const prepareData = (arr, sort) => {
   arr?.sort(function (item1, item2) {
     let result;
-    if (sort.direction === false) {
+    if (sort.direction === true) {
       result = Number.parseFloat(item2[sort.sort] - item1[sort.sort]);
       if (isNaN(result))
         return item1[sort.sort].localeCompare(item2[sort.sort]);

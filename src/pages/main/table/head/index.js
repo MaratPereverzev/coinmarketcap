@@ -6,33 +6,41 @@ const Default = (props) => {
 
   return (
     <TableRow
-      items={tableColumns.map((item) => (
-        <Box flex center>
-          <Icon
-            icon={item.direction === false ? "arrowUp" : "arrowDown"}
-            sx={{ opacity: item.field === sort.sort ? 1 : 0 }}
-          />
-          <Button
-            caption={item.name}
-            variant="text"
-            sxText={{
-              fontWeight: "900",
-              margin: 0,
-              color: sort?.sort === item.field && "#3861fb",
-            }}
-            onClick={() => {
-              if (item?.direction !== null && item.direction !== undefined) {
-                dispatchEvent("sortData", {
-                  sort: item.field,
-                  direction: item.direction,
-                });
-
-                item.direction = !item.direction;
-              }
-            }}
-          />
-        </Box>
-      ))}
+      items={tableColumns.map((item) => {
+        if (
+          item.field !== sort.sort &&
+          item.direction !== undefined &&
+          item.direction !== null
+        ) {
+          item.direction = true;
+        }
+        return (
+          <Box flex center>
+            <Icon
+              icon={item.direction === true ? "arrowDown" : "arrowUp"}
+              sx={{ opacity: item.field === sort.sort ? 1 : 0 }}
+            />
+            <Button
+              caption={item.name}
+              variant="text"
+              sxText={{
+                fontWeight: "900",
+                margin: 0,
+                color: sort?.sort === item.field && "#3861fb",
+              }}
+              onClick={() => {
+                if (item?.direction !== null && item.direction !== undefined) {
+                  dispatchEvent("sortData", {
+                    sort: item.field,
+                    direction: item.direction,
+                  });
+                  item.direction = !item.direction;
+                }
+              }}
+            />
+          </Box>
+        );
+      })}
       isHead
       sx={{
         textAlign: "start",
