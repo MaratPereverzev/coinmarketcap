@@ -1,0 +1,14 @@
+.tableContent {
+  @media screen and (width < 800px) {
+    th {
+      display: none;
+    }
+    td {
+      display: block;
+    }
+    td::before {
+      content: attr(data-cell);
+      text-transform: capitalize;
+    }
+  }
+}

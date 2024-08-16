@@ -21,7 +21,7 @@ const recordsToShow = [
 ];
 
 const Default = (props) => {
-  const { sort, setSort } = props;
+  const { sort, setSort, tableColumns } = props;
   const [query, setQuery] = useState({});
 
   const { itemsPerPage } = useContext(dataContext);
@@ -69,10 +69,10 @@ const Default = (props) => {
         return (
           <TableRow
             key={item.rank}
-            items={recordsToShow.map((key, index) => {
+            items={tableColumns.map((param, index) => {
               if (index === 0) {
                 return (
-                  <Box flex center>
+                  <Box flex center sx={{ height: "100%" }}>
                     <Button
                       caption="Add"
                       variant="text"
@@ -90,35 +90,22 @@ const Default = (props) => {
                   </Box>
                 );
               }
-              if (key === "rank")
-                return (
-                  <Box flex center gap sx={{ padding: "10px" }}>
-                    {item?.[key]}
-                  </Box>
-                );
-              else if (key === "name")
+              if (param.field === "rank")
                 return (
                   <Box
+                    dataCell={param.name}
                     flex
-                    ai
+                    center
                     gap
-                    sx={{
-                      padding: "10px",
-                    }}
+                    sx={{ padding: "10px" }}
                   >
-                    {key === "name" && (
-                      <img
-                        src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
-                        style={{ height: "24px", width: "24px" }}
-                        alt="coin"
-                      />
-                    )}
-                    {convertNumber(item?.[key])}
+                    {item?.[param.field]}
                   </Box>
                 );
               else
                 return (
                   <Box
+                    dataCell={param.name}
                     flex
                     center
                     gap
@@ -126,7 +113,14 @@ const Default = (props) => {
                       padding: "10px",
                     }}
                   >
-                    {convertNumber(item?.[key])}
+                    {param.field === "name" && (
+                      <img
+                        src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
+                        style={{ height: "24px", width: "24px" }}
+                        alt="coin"
+                      />
+                    )}
+                    {convertNumber(item?.[param.field])}
                   </Box>
                 );
             })}

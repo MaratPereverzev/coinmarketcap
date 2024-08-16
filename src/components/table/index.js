@@ -3,6 +3,7 @@ import { TableData } from "./tableData";
 import { TableFoot } from "./tableFoot";
 import { TableHead } from "./tableHead";
 import { TableRow } from "./tableRow";
+import "./styles.css";
 
 const Table = (props) => {
   const { tableHeadData, tableBodyData, tableFootData, sx, ...other } = props;

@@ -31,7 +31,7 @@ const TableRow = (props) => {
           return (
             <TableData
               key={index}
-              data-cell={item?.dataCell}
+              data-cell={item.props?.dataCell}
               value={item?.value ?? item}
               style={{ ...style, ...item?.sx }}
             />
