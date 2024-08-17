@@ -1,6 +1,6 @@
 const getPageHash = () => {
-  return window.location.pathname.replace("/", "") !== ""
-    ? window.location.pathname.replace("/", "")
+  return window.location.pathname.replace(/\/coinmarketcap\/?/, "") !== ""
+    ? window.location.pathname.replace(/\/coinmarketcap\/?/, "")
     : "main";
 };
 
@@ -9,12 +9,4 @@ const setPageHash = (pathname, toLocalStorage) => {
   if (toLocalStorage === true) localStorage.setItem("page", pathname);
 };
 
-const popPage = (pathname, toLocalStorage) => {
-  window.history.pushState(
-    null,
-    null,
-    window.location.pathname.replace("/", "")
-  );
-};
-
-export { getPageHash, setPageHash, popPage };
+export { getPageHash, setPageHash };

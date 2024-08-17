@@ -1,7 +1,8 @@
-import { Box, Chip, Loading, Text, Chart } from "@components";
+import { Box, Chip, Loading, Text, Chart, Button } from "@components";
 import { useFetch, useTimeout } from "@hooks";
-import { convertNumber } from "@utils";
+import { convertNumber, dispatchEvent } from "@utils";
 import { useEffect } from "react";
+import { AddCoin } from "@dialogs";
 import "./styles.css";
 
 const dataRows = [
@@ -94,6 +95,23 @@ const Coin = (props) => {
                 </Box>
               ))}
             </Box>
+            <Button
+              caption="Add to portfolio"
+              variant="text"
+              icon="portfolio"
+              sxIcon={{ fontSize: "20px" }}
+              sx={{
+                color: "grey",
+                backgroundColor: "#ededed",
+                padding: "5px 10px",
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                dispatchEvent("onOpenDialog", {
+                  dialogContent: <AddCoin data={data} />,
+                });
+              }}
+            />
           </Box>
           <Box
             flex
@@ -101,7 +119,7 @@ const Coin = (props) => {
             ai
             grow
             sx={{ padding: "20px", height: "100%" }}
-            classname="additionalData"
+            className="additionalData"
           >
             <Chart />
           </Box>

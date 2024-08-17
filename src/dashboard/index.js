@@ -1,4 +1,4 @@
-import { Box, Snackbar } from "@components";
+import { Box, Snackbar, Dialog } from "@components";
 import { Page } from "@pages";
 
 const Dashboard = () => {
@@ -14,6 +14,7 @@ const Dashboard = () => {
         height: "100%",
       }}
     >
+      <Dialog />
       <Snackbar />
       <Page />
     </Box>

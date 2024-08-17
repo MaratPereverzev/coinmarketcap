@@ -4,6 +4,8 @@ const iconList = {
   arrowUp: "keyboard_arrow_up",
   arrowDown: "keyboard_arrow_down",
   default: "error",
+  portfolio: "work",
+  coin: "paid",
 };
 
 const Default = (props) => {

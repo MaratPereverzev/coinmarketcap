@@ -25,10 +25,8 @@ const Default = () => {
   const urlCoin = useRef("");
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const [page, setPage] = useState(
-    () => getLocalStorageValue("page") ?? "main"
+    () => getLocalStorageValue("page") ?? getPageHash()
   );
-
-  console.log(page);
 
   useEffect(
     () =>
@@ -44,7 +42,6 @@ const Default = () => {
       addEventListener(
         "popstate",
         () => {
-          console.log("ok");
           setPage(getPageHash());
         },
         window

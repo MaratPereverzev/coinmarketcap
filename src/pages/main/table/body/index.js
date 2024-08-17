@@ -1,5 +1,6 @@
-import { Box, Button, TableRow } from "@components";
+import { Box, Button, TableRow, Error } from "@components";
 import { useFetch, useTimeout } from "@hooks";
+import { AddCoin } from "@dialogs";
 import "./style.css";
 import {
   addEventListener,
@@ -26,7 +27,7 @@ const Default = (props) => {
 
   const { itemsPerPage } = useContext(dataContext);
 
-  const { response, fetchData } = useFetch({
+  const { response, fetchData, error } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
     method: "GET",
     responseType: "json",
@@ -66,90 +67,91 @@ const Default = (props) => {
 
   return (
     <>
-      {response?.data.data
-        .filter((item) => {
-          let result = true;
-          tableColumns.forEach((param) => {
-            if (item[param.field] < 0.01) {
-              result = false;
-            }
-          });
-          return result;
-        })
-        .map((item) => {
-          return (
-            <TableRow
-              key={item.rank}
-              items={tableColumns.map((param, index) => {
-                if (index === 0) {
-                  return (
-                    <Box flex center sx={{ height: "100%" }}>
-                      <Button
-                        caption="Add"
-                        variant="text"
-                        sx={{
-                          color: "rgb(88, 102, 126)",
-                        }}
-                        onClick={(e) => {
-                          dispatchEvent("snackbarTrigger", {
-                            message: "Added successfully",
-                            status: "success",
-                          });
-                          e.stopPropagation();
-                        }}
-                      />
-                    </Box>
-                  );
+      {(error && <Error />) ||
+        (response?.data.data &&
+          response?.data.data
+            .filter((item) => {
+              let result = true;
+              tableColumns.forEach((param) => {
+                if (item[param.field] < 0.01) {
+                  result = false;
                 }
-                if (param.field === "rank")
-                  return (
-                    <Box
-                      datacell={param.name}
-                      flex
-                      center
-                      gap
-                      sx={{ padding: "10px" }}
-                    >
-                      {item?.[param.field]}
-                    </Box>
-                  );
-                else
-                  return (
-                    <Box
-                      datacell={param.name}
-                      flex
-                      center
-                      gap
-                      sx={{
-                        padding: "10px",
-                      }}
-                    >
-                      {param.field === "name" && (
-                        <img
-                          src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
-                          style={{ height: "24px", width: "24px" }}
-                          alt="coin"
-                        />
-                      )}
-                      {convertNumber(item?.[param.field])}
-                    </Box>
-                  );
-              })}
-              sx={{
-                fontSize: "14px",
-                height: "55px",
-                textAlign: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                dispatchEvent("changePage", {
-                  page: "coin",
-                  coin: item.id.toLowerCase(),
-                });
-              }}
-            />
-          );
-        })}
+              });
+              return result;
+            })
+            .map((item) => {
+              return (
+                <TableRow
+                  key={item.rank}
+                  items={tableColumns.map((param, index) => {
+                    if (index === 0) {
+                      return (
+                        <Box flex center sx={{ height: "100%" }}>
+                          <Button
+                            caption="Add"
+                            variant="text"
+                            sx={{
+                              color: "rgb(88, 102, 126)",
+                            }}
+                            onClick={(e) => {
+                              dispatchEvent("onOpenDialog", {
+                                dialogContent: <AddCoin data={item} />,
+                              });
+                              e.stopPropagation();
+                            }}
+                          />
+                        </Box>
+                      );
+                    }
+                    if (param.field === "rank")
+                      return (
+                        <Box
+                          datacell={param.name}
+                          flex
+                          center
+                          gap
+                          sx={{ padding: "10px" }}
+                        >
+                          {item?.[param.field]}
+                        </Box>
+                      );
+                    else
+                      return (
+                        <Box
+                          datacell={param.name}
+                          flex
+                          center
+                          gap
+                          sx={{
+                            padding: "10px",
+                          }}
+                        >
+                          {param.field === "name" && (
+                            <img
+                              src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
+                              style={{ height: "24px", width: "24px" }}
+                              alt="coin"
+                            />
+                          )}
+                          {convertNumber(item?.[param.field])}
+                        </Box>
+                      );
+                  })}
+                  sx={{
+                    fontSize: "14px",
+                    height: "55px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    dispatchEvent("changePage", {
+                      page: "coin",
+                      coin: item.id.toLowerCase(),
+                    });
+                  }}
+                />
+              );
+            }))}
     </>
   );
 };

@@ -14,6 +14,7 @@ module.exports = {
       "@hooks": resolvePath("./src/hooks"),
       "@utils": resolvePath("./src/utils"),
       "@pages": resolvePath("./src/pages"),
+      "@dialogs": resolvePath("./src/dialogs"),
     },
   },
   eslint: false,
