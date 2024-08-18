@@ -1,31 +1,63 @@
-import { Pagination, Box } from "@components";
+import { Pagination, Box, Button, Popover, Text } from "@components";
 import { dataContext } from "@context";
 import { useContext } from "react";
 import { dispatchEvent } from "@utils";
 
+const itemsPerPageArr = [100, 50, 25];
+
 const Default = () => {
-  const { itemsPerPage } = useContext(dataContext);
+  const { itemsPerPage, setItemsPerPage } = useContext(dataContext);
 
   return (
-    <Box flex>
+    <Box className="tableFoot" flex jc ai sx={{ width: "100%" }}>
       <Pagination
         count={2000 / itemsPerPage}
         shape="rounded"
         sx={{
-          padding: 1,
           ".MuiPaginationItem-root": {
             fontWeight: "700",
             fontSize: "14px",
             borderRadius: 2,
-          },
-          ".Mui-selected": {
-            backgroundColor: "#3861fb",
           },
         }}
         onChange={(e, page) => {
           dispatchEvent("queryChange", { offset: (page - 1) * 100 });
         }}
       />
+      <Box flex gap jc="flex-end">
+        <Text caption="Show rows" sx={{ fontSize: "12px" }} />
+        <Popover
+          closeOnClick
+          button={
+            <Button
+              caption={itemsPerPage}
+              variant="text"
+              icon="arrowDown"
+              iconAtTheEnd
+            />
+          }
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+        >
+          {itemsPerPageArr.map((value) => (
+            <Button
+              key={value}
+              caption={value}
+              variant="text"
+              sx={{ padding: "5px" }}
+              onClick={() => {
+                setItemsPerPage(value);
+              }}
+            />
+          ))}
+        </Popover>
+      </Box>
     </Box>
   );
 };

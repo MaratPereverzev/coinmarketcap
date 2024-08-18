@@ -102,20 +102,7 @@ const Default = (props) => {
                           />
                         </Box>
                       );
-                    }
-                    if (param.field === "rank")
-                      return (
-                        <Box
-                          datacell={param.name}
-                          flex
-                          center
-                          gap
-                          sx={{ padding: "10px" }}
-                        >
-                          {item?.[param.field]}
-                        </Box>
-                      );
-                    else
+                    } else
                       return (
                         <Box
                           datacell={param.name}
@@ -133,7 +120,9 @@ const Default = (props) => {
                               alt="coin"
                             />
                           )}
-                          {convertNumber(item?.[param.field])}
+                          {param.field === "rank"
+                            ? item?.[param.field]
+                            : convertNumber(item?.[param.field])}
                         </Box>
                       );
                   })}
