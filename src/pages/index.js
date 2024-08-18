@@ -49,7 +49,9 @@ const Default = () => {
     []
   );
   return (
-    <dataContext.Provider value={{ itemsPerPage, tableColumns }}>
+    <dataContext.Provider
+      value={{ itemsPerPage, tableColumns, setItemsPerPage }}
+    >
       <Box flex column sx={{ height: "100%", margin: "20px 20px" }}>
         <Header
           sx={{
