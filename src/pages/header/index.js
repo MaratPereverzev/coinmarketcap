@@ -1,25 +1,9 @@
-import { Box, Input, Button, Popover, Text } from "@components";
-import { useTimeout } from "@hooks";
-import { dispatchEvent } from "@utils";
+import { Box } from "@components";
+import MainHeader from "./main";
+import SubHeader from "./subHeader";
 
-const itemsPerPageArr = [100, 50, 25];
-
-const Header = (props) => {
-  const { sx, page, itemsPerPage, setItemsPerPage } = props;
-  const { timeoutReset } = useTimeout((e) => {
-    dispatchEvent("queryChange", { search: e.target.value });
-  }, 1500);
-
-  return (
-    <Box flex ai jc="space-between" sx={{ ...sx }}>
-      <img
-        src="https://www.tokocrypto.com/static/cloud-web-ui/cloud-toko/static/images/homepage/partner/coinmarketcap-v2.svg"
-        alt="logo"
-        style={{ padding: 0, margin: 0 }}
-      />
-      {page === "main" && (
-        <Box flex ai gap>
-          <Text caption="Show rows" sx={{ fontSize: "12px" }} />
+/*
+<Text caption="Show rows" sx={{ fontSize: "12px" }} />
           <Popover
             closeOnClick
             button={
@@ -51,16 +35,15 @@ const Header = (props) => {
               />
             ))}
           </Popover>
-          <Input
-            variant="standard"
-            placeholder="search"
-            sx={{ paddingRight: "20px" }}
-            onChange={() => (e) => {
-              timeoutReset(e);
-            }}
-          />
-        </Box>
-      )}
+          */
+
+const Header = (props) => {
+  const { page } = props;
+
+  return (
+    <Box flex column>
+      <MainHeader page={page} />
+      <SubHeader />
     </Box>
   );
 };

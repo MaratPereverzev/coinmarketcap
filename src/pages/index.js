@@ -1,5 +1,5 @@
 import { Main } from "./main";
-import { Coin } from "./coin";
+import Coin from "./coin";
 import { Box } from "@components";
 import { dataContext } from "@context";
 import { useState, useEffect, useRef } from "react";

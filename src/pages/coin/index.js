@@ -32,7 +32,7 @@ const Coin = (props) => {
     <Box className="coinPage" flex sx={{ height: "100%" }}>
       {(loading && <Loading />) ||
         (error && <Error />) ||
-        (response?.data.data.length > 0 && (
+        (response?.data.data.id && (
           <>
             <CoinMainData data={response?.data?.data} />
             <CoinAdditionalData />
@@ -42,4 +42,4 @@ const Coin = (props) => {
   );
 };
 
-export { Coin };
+export default Coin;
