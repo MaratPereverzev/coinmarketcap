@@ -68,7 +68,7 @@ const Default = (props) => {
   return (
     <>
       {(error && <Error />) ||
-        (response?.data.data &&
+        (response?.data.data.length > 0 &&
           response?.data.data
             .filter((item) => {
               let result = true;
