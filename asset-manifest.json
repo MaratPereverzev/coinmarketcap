@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/coinmarketcap/static/css/main.88eee26c.css",
-    "main.js": "/coinmarketcap/static/js/main.d46303af.js",
+    "main.js": "/coinmarketcap/static/js/main.972ab0d0.js",
     "index.html": "/coinmarketcap/index.html",
     "main.88eee26c.css.map": "/coinmarketcap/static/css/main.88eee26c.css.map",
-    "main.d46303af.js.map": "/coinmarketcap/static/js/main.d46303af.js.map"
+    "main.972ab0d0.js.map": "/coinmarketcap/static/js/main.972ab0d0.js.map"
   },
   "entrypoints": [
     "static/css/main.88eee26c.css",
-    "static/js/main.d46303af.js"
+    "static/js/main.972ab0d0.js"
   ]
 }
