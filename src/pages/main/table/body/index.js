@@ -1,4 +1,4 @@
-import { Box, Button, TableRow, Error } from "@components";
+import { Box, Button, TableRow, Error, EmptyData } from "@components";
 import { useFetch, useTimeout } from "@hooks";
 import { AddCoin } from "@dialogs";
 import "./style.css";
@@ -140,7 +140,13 @@ const Default = (props) => {
                   }}
                 />
               );
-            }))}
+            })) ||
+        (response?.data?.data.length === 0 && (
+          <EmptyData
+            message="There aren't any coins yet"
+            sx={{ width: "100%" }}
+          />
+        ))}
     </>
   );
 };

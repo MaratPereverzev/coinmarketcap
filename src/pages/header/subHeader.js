@@ -29,7 +29,7 @@ const SubHeader = (props) => {
         (loading && <Text caption="Loading..." />) ||
         (data?.length > 0 &&
           data.map((record) => (
-            <Box flex gap="5px">
+            <Box key={record?.symbol} flex gap="5px">
               <Text caption={record.symbol + ":"} />
               <Text caption={convertNumber(record.priceUsd)} />
             </Box>
