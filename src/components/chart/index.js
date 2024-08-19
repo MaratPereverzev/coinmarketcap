@@ -9,13 +9,8 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const data = [
-  { name: "Page A", pv: 2400 },
-  { name: "Page B", pv: 2000 },
-  { name: "Page C", pv: 2600 },
-];
-
-const Chart = () => {
+const Chart = (props) => {
+  const { data, value, name } = props;
   return (
     <ResponsiveContainer width="100%" height="40%">
       <LineChart
@@ -26,12 +21,13 @@ const Chart = () => {
         style={{ fontSize: "12px" }}
       >
         <CartesianGrid strokeDasharray="1 1" vertical={false} />
-        <XAxis dataKey="name" />
+        <XAxis dataKey={name} />
         <YAxis />
         <Tooltip />
         <Line
           type="linear"
-          dataKey="pv"
+          dataKey={value}
+          dot={false}
           isAnimationActive={false}
           stroke="grey"
         />

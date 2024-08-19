@@ -58,7 +58,7 @@ const Default = (props) => {
   }, [fetchData, query, itemsPerPage]);
 
   useEffect(() => {
-    timeoutDispatch({ url: objectToQuery({ ...query, limit: itemsPerPage }) });
+    timeoutDispatch();
 
     return () => timeoutClear();
   });

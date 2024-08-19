@@ -35,7 +35,7 @@ const Coin = (props) => {
         (response?.data.data.id && (
           <>
             <CoinMainData data={response?.data?.data} />
-            <CoinAdditionalData />
+            <CoinAdditionalData urlCoin={urlCoin} />
           </>
         ))}
     </Box>
