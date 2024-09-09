@@ -1,5 +1,8 @@
 import { Text } from "../text";
-const Chip = (props) => {
+import React from "react"
+import type {ChipProps} from "@/utils/types"
+
+const Chip = (props: ChipProps): React.JSX.Element => {
   const { sx, caption, ...other } = props;
 
   return (

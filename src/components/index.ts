@@ -14,3 +14,4 @@ export * from "./loading";
 export * from "./chart";
 export * from "./dialog";
 export * from "./error";
+export * from "./chart";

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { Box, Button } from "@/components";
+import { PopoverProps } from "@/utils/types";
 import { Popover } from "@mui/material";
-import { Box, Button } from "@components";
+import React from "react";
 
-const Default = (props) => {
+const Default = (props: PopoverProps): React.JSX.Element => {
   const {
     button,
     children,
@@ -13,9 +14,9 @@ const Default = (props) => {
     className,
     ...other
   } = props;
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -42,7 +43,6 @@ const Default = (props) => {
         />
       )}
       <Popover
-        open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
@@ -53,7 +53,7 @@ const Default = (props) => {
       >
         {children && (
           <Box flex column sx={{ ...sxPopover }} {...boxProps}>
-            {Array.isArray(children) ? (
+            {
               children.map((child, index) => {
                 if (typeof child === "boolean" && child === false) return null;
                 return (
@@ -67,21 +67,7 @@ const Default = (props) => {
                   />
                 );
               })
-            ) : (
-              <children.type {...children.props}>
-                {typeof children === "boolean" && children === false ? null : (
-                  <children.type
-                    {...children.props}
-                    onClick={() => {
-                      if (children.props?.onClick) {
-                        children.props.onClick();
-                        if (closeOnClick) handleClose();
-                      }
-                    }}
-                  />
-                )}
-              </children.type>
-            )}
+            }
           </Box>
         )}
       </Popover>
@@ -90,3 +76,4 @@ const Default = (props) => {
 };
 
 export { Default as Popover };
+

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { addEventListener } from "@utils";
+import { addEventListener, Indexable } from "@/utils";
 import { Snackbar, Alert } from "@mui/material";
+import React from 'react'
 
-const Default = (props) => {
+const Default = (props: any): React.JSX.Element => {
   const { vertical = "top", horizontal = "center" } = props;
-  const data = useRef(null);
+  const data = useRef<Indexable |null>(null);
 
   const [state, setState] = useState({
     open: false,

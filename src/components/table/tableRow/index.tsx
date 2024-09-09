@@ -1,7 +1,9 @@
 import { TableHead } from "../tableHead";
 import { TableData } from "../tableData";
+import React from "react"
+import type { TableRowProps } from "@/utils/types";
 
-const TableRow = (props) => {
+const TableRow = (props: TableRowProps): React.JSX.Element => {
   const { sx, items, isHead, ...other } = props;
   const style = {
     borderBottom: "1px solid #dddddd",

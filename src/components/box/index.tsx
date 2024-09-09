@@ -1,4 +1,7 @@
-const Box = (props) => {
+import type { BoxProps } from "@/utils";
+import React from "react";
+
+const Box = (props: BoxProps): React.JSX.Element => {
   const {
     sx = {},
     flex,
@@ -47,7 +50,7 @@ const Box = (props) => {
     if (gridTemplate) sx.gridTemplate = gridTemplate;
     if (gap) sx.gap = typeof gap === "boolean" ? "10px" : gap;
   }
-  return <div style={{ display: "flex", ...sx }} {...other}></div>;
+  return <div style={{ display: "flex", ...sx }}  {...other} />;
 };
 
 export { Box };

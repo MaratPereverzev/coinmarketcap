@@ -1,6 +1,8 @@
 import { Box } from "../box";
+import React from "react"
+import type { Indexable } from "@/utils";
 
-const iconList = {
+const iconList: Indexable = {
   arrowUp: "keyboard_arrow_up",
   arrowDown: "keyboard_arrow_down",
   default: "error",
@@ -8,7 +10,7 @@ const iconList = {
   coin: "paid",
 };
 
-const Default = (props) => {
+const Default = (props: any): React.JSX.Element => {
   const { icon, sx, sxIcon, ...other } = props;
 
   return (

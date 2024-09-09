@@ -1,8 +1,10 @@
+import type { ButtonProps } from "@/utils/types";
+import React from "react";
 import { Box } from "../box";
-import { Text } from "../text";
 import { Icon } from "../icon";
+import { Text } from "../text";
 
-const Button = (props) => {
+const Button = (props: ButtonProps): React.JSX.Element => {
   const {
     caption,
     sx = {},
@@ -22,14 +24,15 @@ const Button = (props) => {
 
   return (
     <Box
-      flex
-      sx={{
-        cursor: "pointer",
-        ...sx,
-      }}
-      {...other}
+    flex
+    sx={{
+      cursor: "pointer",
+      ...sx,
+    }}
     >
-      {icon && !iconAtTheEnd && <Icon icon={icon} sxIcon={sxIcon} />}
+      <>
+        {icon && !iconAtTheEnd && <Icon icon={icon} sxIcon={sxIcon} />}
+      </>
       <button
         style={{
           padding: 0,
@@ -40,14 +43,18 @@ const Button = (props) => {
           cursor: "pointer",
           ...sx,
         }}
+        {...other}
       >
         {caption && (
           <Text caption={caption} sx={{ padding: 0, margin: 0, ...sxText }} />
         )}
       </button>
-      {icon && iconAtTheEnd && <Icon icon={icon} sxIcon={sxIcon} />}
+      <>
+        {icon !== undefined && iconAtTheEnd !== undefined && <Icon icon={icon} sxIcon={sxIcon} />}
+      </>
     </Box>
   );
 };
 
 export { Button };
+

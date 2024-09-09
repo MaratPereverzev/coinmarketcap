@@ -1,11 +1,12 @@
 import "./styles.css";
+import React from "react";
 import { TableData } from "./tableData";
 import { TableFoot } from "./tableFoot";
 import { TableHead } from "./tableHead";
 import { TableRow } from "./tableRow";
-import "./styles.css";
+import { TableProps } from "@/utils";
 
-const Table = (props) => {
+const Table = (props: TableProps): React.JSX.Element => {
   const { tableHeadData, tableBodyData, tableFootData, sx, ...other } = props;
   return (
     <table className="tableContent" style={{ ...sx }} {...other}>
