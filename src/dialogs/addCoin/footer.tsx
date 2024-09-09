@@ -1,8 +1,9 @@
-import { Box, Button } from "@components";
-import { dispatchEvent } from "@utils";
+import { Box, Button } from "@/components";
+import { ButtonProps, dispatchEvent } from "@/utils";
+import React from "react"
 
-const buttonSx = {
-  varian: "text",
+const buttonProps: ButtonProps = {
+  variant: "text",
   sx: {
     backgroundColor: "#ededed",
     padding: "4px",
@@ -15,7 +16,7 @@ const Footer = () => {
     <Box flex jc="flex-end" gap="5px">
       <Button
         caption="Add"
-        {...buttonSx}
+        {...buttonProps}
         onClick={() => {
           dispatchEvent("snackbarTrigger", {
             message: "Added successfully",
@@ -26,7 +27,7 @@ const Footer = () => {
       />
       <Button
         caption="Cancel"
-        {...buttonSx}
+        {...buttonProps}
         onClick={() => {
           dispatchEvent("dialogTrigger", { closed: true });
         }}

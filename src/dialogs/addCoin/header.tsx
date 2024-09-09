@@ -1,6 +1,8 @@
-import { Box, Text } from "@components";
+import { Box, Text } from "@/components";
+import { addCoinDataProps } from "@/utils";
+import React from "react"
 
-const Header = (props) => {
+const Header = (props: addCoinDataProps): React.JSX.Element => {
   const { data } = props;
   const date = new Date();
 
@@ -13,7 +15,7 @@ const Header = (props) => {
     >
       <Box flex center grow gap="50px">
         <img
-          src={`https://assets.coincap.io/assets/icons/${data?.symbol.toLowerCase()}@2x.png`}
+          src={`https://assets.coincap.io/assets/icons/${data?.symbol?.toLowerCase()}@2x.png`}
           alt="coin"
           style={{ width: "50px" }}
         />

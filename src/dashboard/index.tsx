@@ -1,7 +1,8 @@
-import { Box, Snackbar, Dialog } from "@components";
-import { Page } from "@pages";
+import { Box, Snackbar, Dialog } from "@/components";
+import { Page } from "@/pages";
+import React from "react"
 
-const Dashboard = () => {
+const Dashboard = (): React.JSX.Element => {
   return (
     <Box
       flex

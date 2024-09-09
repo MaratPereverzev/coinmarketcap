@@ -1,6 +1,7 @@
-import { Box, Button, Text } from "@components";
-import { convertNumber } from "@utils";
+import { Box, Button, Text } from "@/components";
+import { convertNumber, Indexable } from "@/utils";
 import { useState } from "react";
+import React from "react";
 
 const buttonSx = {
   variant: "text",
@@ -12,7 +13,7 @@ const buttonSx = {
   sxText: { margin: 0 },
 };
 
-const Body = (props) => {
+const Body = (props: Indexable): React.JSX.Element => {
   const { data } = props;
   const [count, setCount] = useState(1);
 
@@ -24,13 +25,13 @@ const Body = (props) => {
           <Button
             caption="+"
             {...buttonSx}
-            onClick={() => setCount((prev) => prev + 1)}
+            onClick={(): void => setCount((prev) => prev + 1)}
           />
           <Text caption={count} />
           <Button
             caption="-"
             {...buttonSx}
-            onClick={() => {
+            onClick={(): void => {
               if (count > 1) setCount((prev) => prev - 1);
             }}
           />
