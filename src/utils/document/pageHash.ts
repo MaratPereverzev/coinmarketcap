@@ -4,8 +4,8 @@ const getPageHash = () => {
     : "main";
 };
 
-const setPageHash = (pathname, toLocalStorage) => {
-  window.history.pushState(null, null, pathname);
+const setPageHash = (pathname: string, toLocalStorage?: boolean) => {
+  window.history.pushState(null, "", pathname);
   if (toLocalStorage === true) localStorage.setItem("page", pathname);
 };
 

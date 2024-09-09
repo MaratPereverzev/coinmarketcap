@@ -3,7 +3,7 @@ let formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-const convertNumber = (value) => {
+const convertNumber = (value: number): string | number => {
   if (isNaN(+value)) {
     return value;
   }

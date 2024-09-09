@@ -1,4 +1,10 @@
-const addEventListener = (name, callback, target = document) => {
+import type { Indexable } from "@/utils/types";
+
+const addEventListener = (
+  name: string,
+  callback: (params: Indexable) => void,
+  target: Document | Window = document
+): (() => void) => {
   if (typeof name !== "string")
     throw new Error("event props are inappropriate");
 
@@ -7,7 +13,11 @@ const addEventListener = (name, callback, target = document) => {
   return () => target.removeEventListener(name, callback);
 };
 
-const dispatchEvent = (name, data, target = document) => {
+const dispatchEvent = (
+  name: string,
+  data: Indexable,
+  target: Document | Window = document
+): void => {
   if (typeof name !== "string")
     throw new Error("event props are inappropriate");
 
