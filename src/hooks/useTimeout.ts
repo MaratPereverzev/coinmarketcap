@@ -1,6 +1,8 @@
+import { Indexable } from "@/utils";
 import { useEffect, useRef, useCallback } from "react";
+const { setTimeout, clearTimeout } = window;
 
-const Default = (callback, delay) => {
+const Default = (callback: (data: Indexable) => void, delay: number) => {
   const callbackRef = useRef(callback);
   const callbackTimeoutRef = useRef(callbackRef);
 
@@ -9,7 +11,7 @@ const Default = (callback, delay) => {
   }, [callback]);
 
   const timeoutDispatch = useCallback(
-    (data) => {
+    (data: Indexable) => {
       callbackTimeoutRef.current = setTimeout(() => {
         callbackRef.current(data);
       }, delay);
@@ -22,7 +24,7 @@ const Default = (callback, delay) => {
   }, []);
 
   const timeoutReset = useCallback(
-    (data) => {
+    (data: Indexable) => {
       timeoutClear();
       timeoutDispatch(data);
     },
