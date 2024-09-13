@@ -19,26 +19,26 @@ const objectToQuery = (obj: {
 const prepareData = (
   arr: { [index: string | symbol]: string }[],
   sort: {
-    [index: string | symbol]: string | boolean;
-    sort: string;
-    direction: boolean;
+    [index: string | symbol]: string | boolean | undefined;
+    field: string;
+    direction?: boolean;
   }
 ): void => {
   arr?.sort(function (item1, item2) {
     let result;
     if (sort.direction === true) {
       result =
-        Number.parseFloat(item2[sort.sort]) -
-        Number.parseFloat(item1[sort.sort]);
+        Number.parseFloat(item2[sort.field]) -
+        Number.parseFloat(item1[sort.field]);
       if (isNaN(result))
-        return item1[sort.sort].localeCompare(item2[sort.sort]);
+        return item1[sort.field].localeCompare(item2[sort.field]);
       return result;
     } else {
       result =
-        Number.parseFloat(item1[sort.sort]) -
-        Number.parseFloat(item2[sort.sort]);
+        Number.parseFloat(item1[sort.field]) -
+        Number.parseFloat(item2[sort.field]);
       if (isNaN(result))
-        return item2[sort.sort].localeCompare(item1[sort.sort]);
+        return item2[sort.field].localeCompare(item1[sort.field]);
       return result;
     }
   });
