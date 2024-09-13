@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import type { PaginationProps } from "@/utils/types";
+import type { PaginationProps } from "@mui/material";
 import React from "react"
 
 const Default = (props: PaginationProps): React.JSX.Element => {

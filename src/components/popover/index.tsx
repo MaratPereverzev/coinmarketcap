@@ -1,7 +1,20 @@
-import { Box, Button } from "@/components";
-import { PopoverProps } from "@/utils/types";
+import type { PopoverProps as PopoverPropsMui } from "@mui/material";
 import { Popover } from "@mui/material";
 import React from "react";
+import type { BoxProps } from "../box";
+import { Box } from "../box";
+import { Button } from "../button";
+import type { sxProp } from "../types";
+
+type PopoverProps = Omit<PopoverPropsMui, "open"> & {
+  children?: React.JSX.Element[] | JSX.Element[];
+  button?: React.JSX.Element | JSX.Element;
+  closeOnClick?: boolean;
+  sxPopover?: sxProp;
+  sxButton?: sxProp;
+  boxProps?: BoxProps;
+  className?: String;
+};
 
 const Default = (props: PopoverProps): React.JSX.Element => {
   const {
@@ -43,6 +56,7 @@ const Default = (props: PopoverProps): React.JSX.Element => {
         />
       )}
       <Popover
+        open
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{

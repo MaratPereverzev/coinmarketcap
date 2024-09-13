@@ -1,5 +1,10 @@
-import React from 'react'
-import type {TableDataProps} from "@/utils/types"
+import React from 'react';
+import type {sxProp} from "../../types"
+
+type TableDataProps = React.HTMLAttributes<HTMLTableCellElement> & {
+  sx?: sxProp;
+  value?: string | number | JSX.Element | React.JSX.Element;
+};
 
 const TableData = (props: TableDataProps): React.JSX.Element => {
   const { sx, value, ...other } = props;

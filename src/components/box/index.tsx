@@ -1,5 +1,23 @@
-import type { BoxProps } from "@/utils";
 import React from "react";
+import type { sxProp } from "../types";
+
+type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
+  sx?: sxProp;
+  flex?: boolean;
+  column?: boolean;
+  wrap?: boolean;
+  jc?: string | boolean;
+  ai?: string | boolean;
+  gap?: string | boolean | number;
+  grow?: number | boolean;
+  center?: boolean;
+  grid?: boolean;
+  columnWidth?: string;
+  rowWidth?: string;
+  gridFlow?: string;
+  gridTemplate?: string;
+  templateColumns?: string;
+};
 
 const Box = (props: BoxProps): React.JSX.Element => {
   const {
@@ -54,3 +72,4 @@ const Box = (props: BoxProps): React.JSX.Element => {
 };
 
 export { Box };
+export type {BoxProps}

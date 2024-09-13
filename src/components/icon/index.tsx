@@ -1,6 +1,6 @@
 import { Box } from "../box";
 import React from "react"
-import type { Indexable } from "@/utils";
+import type { Indexable } from "../types";
 
 const iconList: Indexable = {
   arrowUp: "keyboard_arrow_up",

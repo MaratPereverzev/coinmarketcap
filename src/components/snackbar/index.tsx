@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { addEventListener, Indexable } from "@/utils";
+import { addEventListener } from "@/utils";
 import { Snackbar, Alert } from "@mui/material";
+import type {Indexable} from "../types";
 import React from 'react'
 
 const Default = (props: any): React.JSX.Element => {

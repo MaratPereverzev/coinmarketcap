@@ -1,15 +1,15 @@
-//"use client";
 import React from "react";
+import type { LineProps } from "recharts";
 import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  Tooltip,
-  YAxis,
-  XAxis,
-  CartesianGrid,
+  CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis
 } from "recharts";
-import type { ChartProps } from "@/utils/types";
+import type {Indexable} from "../types"
+
+type ChartProps = LineProps & {
+  name?: string;
+  value?: string;
+  data?: Indexable;
+};
 
 const Chart = (props: ChartProps): React.JSX.Element => {
   const { data, value, name } = props;
@@ -39,3 +39,4 @@ const Chart = (props: ChartProps): React.JSX.Element => {
 };
 
 export { Chart };
+

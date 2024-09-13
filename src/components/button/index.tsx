@@ -1,8 +1,20 @@
-import type { ButtonProps } from "@/utils/types";
+import type { sxProp } from "../types";
 import React from "react";
 import { Box } from "../box";
 import { Icon } from "../icon";
 import { Text } from "../text";
+
+type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+  sx?: sxProp;
+  caption?: string | number;
+  sxText?: sxProp;
+  sxBox?: sxProp;
+  sxIcon?: sxProp;
+  variant?: string;
+  icon?: string;
+  iconAtTheEnd?: boolean;
+  templateColumns?: string;
+};
 
 const Button = (props: ButtonProps): React.JSX.Element => {
   const {
@@ -57,4 +69,5 @@ const Button = (props: ButtonProps): React.JSX.Element => {
 };
 
 export { Button };
+export type {ButtonProps}
 

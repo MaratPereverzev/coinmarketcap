@@ -1,6 +1,11 @@
 import { Text } from "../text";
 import React from "react"
-import type {ChipProps} from "@/utils/types"
+import type {sxProp} from "../types"
+
+type ChipProps = React.HTMLAttributes<HTMLParagraphElement> & {
+  sx?: sxProp;
+  caption: string;
+};
 
 const Chip = (props: ChipProps): React.JSX.Element => {
   const { sx, caption, ...other } = props;

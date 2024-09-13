@@ -1,7 +1,13 @@
 import { TableHead } from "../tableHead";
 import { TableData } from "../tableData";
 import React from "react"
-import type { TableRowProps } from "@/utils/types";
+import type { sxProp } from "../../types";
+
+type TableRowProps = React.HTMLAttributes<HTMLTableRowElement> & {
+  sx?: sxProp;
+  items?: string | number | JSX.Element | React.JSX.Element;
+  isHead?: boolean;
+};
 
 const TableRow = (props: TableRowProps): React.JSX.Element => {
   const { sx, items, isHead, ...other } = props;

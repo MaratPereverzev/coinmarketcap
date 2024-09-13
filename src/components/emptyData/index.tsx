@@ -1,8 +1,13 @@
-import { EmptyPageProps } from "@/utils/types";
 import React from "react";
 import { Box } from "../box";
+import type {BoxProps} from "../box"
 import { Icon } from "../icon";
 import { Text } from "../text";
+
+type EmptyPageProps = BoxProps & {
+  message?: string;
+  icon?: string;
+};
 
 const Default = (props: EmptyPageProps): React.JSX.Element => {
   const { message, icon, sx, ...other } = props;
