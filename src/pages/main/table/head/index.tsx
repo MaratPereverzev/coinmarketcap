@@ -1,14 +1,23 @@
-import { TableRow, Box, Button, Icon } from "@components";
-import { dispatchEvent } from "@utils";
+import { TableRow, Box, Button, Icon } from "@/components";
+import type { Indexable } from "@/components/types";
+import { dispatchEvent } from "@/utils";
+import React from "react"
 
-const Default = (props) => {
+type HeadProps = {
+  sort: Indexable & {
+    field: string;
+    direction?: boolean;
+},
+  tableColumns: Indexable
+}
+const Default = (props: HeadProps): React.JSX.Element => {
   const { sort, tableColumns } = props;
 
   return (
     <TableRow
-      items={tableColumns.map((item) => {
+      items={tableColumns.map((item: Indexable) => {
         if (
-          item.field !== sort.sort &&
+          item.field !== sort.field &&
           item.direction !== undefined &&
           item.direction !== null
         ) {
@@ -18,7 +27,7 @@ const Default = (props) => {
           <Box flex center>
             <Icon
               icon={item.direction === true ? "arrowDown" : "arrowUp"}
-              sx={{ opacity: item.field === sort.sort ? 1 : 0 }}
+              sx={{ opacity: item.field === sort.field ? 1 : 0 }}
             />
             <Button
               caption={item.name}

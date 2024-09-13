@@ -1,9 +1,10 @@
-import { Box, Error, Text } from "@components";
-import { useEffect } from "react";
-import { useTimeout, useFetch } from "@hooks";
-import { convertNumber } from "@utils";
+import { Box, Error, Text } from "@/components";
+import type { Indexable } from "@/components/types";
+import { useFetch, useTimeout } from "@/hooks";
+import { convertNumber } from "@/utils";
+import React, { useEffect } from "react";
 
-const SubHeader = (props) => {
+const SubHeader = (): React.JSX.Element => {
   const { response, fetchData, error, loading } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets?limit=3",
     method: "GET",
@@ -28,7 +29,7 @@ const SubHeader = (props) => {
       {(error && <Error />) ||
         (loading && <Text caption="Loading..." />) ||
         (data?.length > 0 &&
-          data.map((record) => (
+          data.map((record: Indexable) => (
             <Box key={record?.symbol} flex gap="5px">
               <Text caption={record.symbol + ":"} />
               <Text caption={convertNumber(record.priceUsd)} />

@@ -1,11 +1,15 @@
-import { Box, Loading, Error } from "@components";
-import { useFetch, useTimeout } from "@hooks";
+import { Box, Loading, Error } from "@/components";
+import { useFetch, useTimeout } from "@/hooks";
 import { useEffect } from "react";
 import CoinAdditionalData from "./coinAdditionalData";
 import CoinMainData from "./coinMainData";
+import React from "react"
 import "./styles.css";
 
-const Coin = (props) => {
+type CoinProps = {
+  urlCoin?: string
+}
+const Coin = (props: CoinProps) => {
   const { urlCoin } = props;
 
   const { response, fetchData, loading, error } = useFetch({

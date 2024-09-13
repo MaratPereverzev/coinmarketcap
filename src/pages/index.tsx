@@ -1,15 +1,13 @@
-import { Main } from "./main";
-import Coin from "./coin";
-import { Box } from "@components";
-import { dataContext } from "@context";
-import { useState, useEffect, useRef } from "react";
+import { Box } from "@/components";
+import { dataContext } from "@/context";
 import {
-  addEventListener,
-  setPageHash,
-  getLocalStorageValue,
-  getPageHash,
-} from "@utils";
+  addEventListener, getLocalStorageValue,
+  getPageHash, setPageHash
+} from "@/utils";
+import React, { useEffect, useRef, useState } from "react";
+import Coin from "./coin";
 import { Header } from "./header";
+import { Main } from "./main";
 
 const tableColumns = [
   { name: "", field: "" },
@@ -21,7 +19,7 @@ const tableColumns = [
   { name: "Volume(24h)", field: "volumeUsd24Hr", direction: true },
 ];
 
-const Default = () => {
+const Default = (): React.JSX.Element => {
   const urlCoin = useRef("");
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const [page, setPage] = useState(
@@ -58,9 +56,6 @@ const Default = () => {
             backgroundColor: "#ededed",
             borderRadius: "20px",
           }}
-          itemsPerPage={itemsPerPage}
-          setItemsPerPage={setItemsPerPage}
-          page={page}
         />
         {page === "main" && <Main itemsPerPage={itemsPerPage} />}
         {page === "coin" && <Coin urlCoin={urlCoin.current} />}
@@ -70,3 +65,4 @@ const Default = () => {
 };
 
 export { Default as Page };
+

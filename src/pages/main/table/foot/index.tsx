@@ -1,12 +1,12 @@
-import { Pagination, Box, Button, Popover, Text } from "@components";
-import { dataContext } from "@context";
-import { useContext } from "react";
-import { dispatchEvent } from "@utils";
+import { Box, Button, Pagination, Popover, Text } from "@/components";
+import { dataContext } from "@/context";
+import { dispatchEvent } from "@/utils";
+import React, { useContext } from "react";
 
 const itemsPerPageArr = [100, 50, 25];
 
-const Default = () => {
-  const { itemsPerPage, setItemsPerPage } = useContext(dataContext);
+const Default = ():React.JSX.Element => {
+  const { itemsPerPage, setItemsPerPage } = useContext(dataContext)!;
 
   return (
     <Box className="tableFoot" flex jc ai sx={{ width: "100%" }}>
@@ -63,3 +63,4 @@ const Default = () => {
 };
 
 export { Default as Foot };
+

@@ -1,6 +1,7 @@
-import { Box, Button, TableRow, Error, EmptyData } from "@components";
-import { useFetch, useTimeout } from "@hooks";
-import { AddCoin } from "@dialogs";
+import { Box, Button, TableRow, Error, EmptyData } from "@/components";
+import type { Indexable } from "@/components/types";
+import { useFetch, useTimeout } from "@/hooks";
+import { AddCoin } from "@/dialogs";
 import "./style.css";
 import {
   addEventListener,
@@ -8,9 +9,10 @@ import {
   dispatchEvent,
   objectToQuery,
   prepareData,
-} from "@utils";
-import { dataContext } from "@context";
+} from "@/utils";
+import { dataContext } from "@/context";
 import { useEffect, useState, useContext } from "react";
+import React from "react";
 
 const recordsToShow = [
   "",
@@ -21,11 +23,20 @@ const recordsToShow = [
   "volumeUsd24Hr",
 ];
 
-const Default = (props) => {
+type BodyProps = {
+  sort: Indexable & {field: string, direction?: boolean},
+  tableColumns: Indexable,
+  setSort: React.Dispatch<React.SetStateAction<{
+    field: string;
+    direction?: boolean;
+}>>
+}
+
+const Default = (props: BodyProps): React.JSX.Element => {
   const { sort, setSort, tableColumns } = props;
   const [query, setQuery] = useState({});
 
-  const { itemsPerPage } = useContext(dataContext);
+  const { itemsPerPage } = useContext(dataContext)!;
 
   const { response, fetchData, error } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
@@ -63,27 +74,27 @@ const Default = (props) => {
     return () => timeoutClear();
   });
 
-  prepareData(response?.data.data, sort, recordsToShow);
+  prepareData(response?.data.data, sort);
 
   return (
     <>
       {(error && <Error />) ||
         (response?.data.data.length > 0 &&
           response?.data.data
-            .filter((item) => {
+            .filter((item: Indexable) => {
               let result = true;
-              tableColumns.forEach((param) => {
+              tableColumns.forEach((param: Indexable) => {
                 if (item[param.field] < 0.01) {
                   result = false;
                 }
               });
               return result;
             })
-            .map((item) => {
+            .map((item: Indexable) => {
               return (
                 <TableRow
                   key={item.rank}
-                  items={tableColumns.map((param, index) => {
+                  items={tableColumns.map((param: Indexable, index: number) => {
                     if (index === 0) {
                       return (
                         <Box flex center sx={{ height: "100%" }}>
@@ -105,7 +116,7 @@ const Default = (props) => {
                     } else
                       return (
                         <Box
-                          datacell={param.name}
+                          //datacell={param.name}
                           flex
                           center
                           gap

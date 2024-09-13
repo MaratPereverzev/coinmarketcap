@@ -1,6 +1,8 @@
-import { Box, Button, Chip, Text } from "@components";
-import { AddCoin } from "@dialogs";
-import { convertNumber, dispatchEvent } from "@utils";
+import { Box, Button, Chip, Text } from "@/components";
+import { Indexable } from "@/components/types";
+import { AddCoin } from "@/dialogs";
+import { convertNumber, dispatchEvent } from "@/utils";
+import React from "react";
 
 const dataRows = [
   { name: "Market Cap.", field: "marketCapUsd" },
@@ -9,7 +11,11 @@ const dataRows = [
   { name: "Max Supply", field: "maxSupply" },
 ];
 
-const CoinMainData = (props) => {
+type CoinMainDataProps = {
+  data: Indexable
+}
+
+const CoinMainData = (props: CoinMainDataProps) => {
   const { data } = props;
 
   return (

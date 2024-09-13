@@ -1,10 +1,17 @@
-import { Box, Input } from "@components";
-import { useTimeout } from "@hooks";
-import { dispatchEvent } from "@utils";
+import { Box, Input } from "@/components";
+import { useTimeout } from "@/hooks";
+import { dispatchEvent } from "@/utils";
+import {sxProp} from "@/components/types"
+import React from "react"
 
-const MainHeader = (props) => {
+type MainHeaderProps = {
+  sx?: sxProp;
+  page?: string
+}
+
+const MainHeader = (props: MainHeaderProps) => {
   const { sx, page } = props;
-  const { timeoutReset } = useTimeout((e) => {
+  const { timeoutReset } = useTimeout((e: React.ChangeEvent<HTMLInputElement>) => {
     dispatchEvent("queryChange", { search: e.target.value });
   }, 1500);
 
@@ -20,7 +27,7 @@ const MainHeader = (props) => {
           variant="standard"
           placeholder="search"
           sx={{ paddingRight: "20px" }}
-          onChange={() => (e) => {
+          onChange={() => (e: React.ChangeEvent<HTMLInputElement>) => {
             timeoutReset(e);
           }}
         />

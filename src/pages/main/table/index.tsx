@@ -1,15 +1,26 @@
-import { Table, Box } from "@components";
+import { Table, Box } from "@/components";
 import { TableBody } from "./body";
 import { TableHead } from "./head";
 import { Foot } from "./foot";
 import { useState, useContext } from "react";
-import { dataContext } from "@context";
+import { dataContext } from "@/context";
+import React from "react"
+import { sxProp } from "@/components/types";
 
-const Default = (props) => {
+type TableProps = {
+  [index: string | symbol]: sxProp | undefined;
+  sx?: sxProp;
+  sxBox?: sxProp;
+}
+
+const Default = (props: TableProps): React.JSX.Element => {
   const { sx, sxBox } = props;
-  const { tableColumns } = useContext(dataContext);
+  const {tableColumns} = useContext(dataContext)!;
 
-  const [sort, setSort] = useState({ sort: "rank", direction: "down" });
+  const [sort, setSort] = useState<{
+    field: string;
+    direction?: boolean;
+}>({ field: "rank", direction: false });
 
   return (
     <Box flex column center sx={{ ...sxBox }}>

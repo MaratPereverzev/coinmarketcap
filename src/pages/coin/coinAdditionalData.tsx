@@ -1,8 +1,13 @@
-import { Box, Chart, Error, Loading } from "@components";
-import { useFetch } from "@hooks";
+import { Box, Chart, Error, Loading } from "@/components";
+import { useFetch } from "@/hooks";
 import { useEffect } from "react";
+import React from "react"
 
-const CoinAdditionalData = (props) => {
+type CoinAdditionalDataProps = {
+  urlCoin?: string
+}
+
+const CoinAdditionalData = (props: CoinAdditionalDataProps) => {
   const { urlCoin } = props;
   const { response, fetchData, error, loading } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
