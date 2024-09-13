@@ -1,5 +1,6 @@
 import { Box, Button } from "@/components";
-import { ButtonProps, dispatchEvent } from "@/utils";
+import type { ButtonProps } from "@/components/button";
+import { dispatchEvent } from "@/utils";
 import React from "react"
 
 const buttonProps: ButtonProps = {

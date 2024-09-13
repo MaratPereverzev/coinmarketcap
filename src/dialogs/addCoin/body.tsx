@@ -1,5 +1,6 @@
 import { Box, Button, Text } from "@/components";
-import { convertNumber, Indexable } from "@/utils";
+import type { Indexable } from "@/components/types";
+import { convertNumber} from "@/utils";
 import { useState } from "react";
 import React from "react";
 

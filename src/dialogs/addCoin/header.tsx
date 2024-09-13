@@ -1,8 +1,11 @@
 import { Box, Text } from "@/components";
-import { addCoinDataProps } from "@/utils";
+import { Indexable } from "@/components/types";
 import React from "react"
 
-const Header = (props: addCoinDataProps): React.JSX.Element => {
+type HeaderProps = {
+  data: Indexable
+}
+const Header = (props: HeaderProps): React.JSX.Element => {
   const { data } = props;
   const date = new Date();
 

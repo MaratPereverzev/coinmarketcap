@@ -1,9 +1,17 @@
 import { Box } from "@/components";
+import type { Indexable } from "@/components/types";
+import React from "react";
 import Body from "./body";
 import Footer from "./footer";
 import Header from "./header";
-import React from "react"
-import { addCoinDataProps } from "@/utils/types";
+
+type addCoinDataProps = {
+  data: Indexable & {
+    symbol?: string;
+    name?: string;
+    priceUsd?: string;
+  };
+};
 
 const AddCoin = (props: addCoinDataProps): React.JSX.Element => {
   const {data} = props;
@@ -18,3 +26,4 @@ const AddCoin = (props: addCoinDataProps): React.JSX.Element => {
 };
 
 export { AddCoin };
+
