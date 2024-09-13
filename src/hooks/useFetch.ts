@@ -1,4 +1,4 @@
-import { Indexable } from "@/utils";
+import { Indexable } from "@/components/types";
 import axios, { AxiosResponse } from "axios";
 import { useCallback, useState, useRef } from "react";
 
@@ -8,7 +8,7 @@ const Default = (defOptions = {}) => {
   const [error, setError] = useState(false);
   const options = useRef(defOptions);
 
-  const fetchData = useCallback(async (additionalOptions: Indexable) => {
+  const fetchData = useCallback(async (additionalOptions?: Indexable) => {
     setLoading(true);
     try {
       const response = await axios({
