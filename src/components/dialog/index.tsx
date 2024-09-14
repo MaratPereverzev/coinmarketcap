@@ -1,5 +1,6 @@
 import { Dialog, useMediaQuery, useTheme } from "@mui/material";
 import { addEventListener } from "@/utils";
+import type {Indexable} from "../types";
 import React, { useEffect, useRef, useState } from "react";
 
 const Default = (): React.JSX.Element => {
@@ -10,7 +11,7 @@ const Default = (): React.JSX.Element => {
 
   useEffect(
     () =>
-      addEventListener("onOpenDialog", ({ detail }) => {
+      addEventListener("onOpenDialog", ({ detail }: Indexable) => {
         dialogContent.current = detail?.dialogContent;
         setOpen(true);
       }),
