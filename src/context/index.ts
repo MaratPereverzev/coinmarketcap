@@ -1,12 +1,9 @@
-import type { Indexable } from "@/components/types";
-import { createContext } from "react";
-import React from "react";
+import type { Indexable } from "components/types";
+import { createContext, Dispatch, SetStateAction } from "react";
 
-type contextProps = Indexable & {
+export type contextProps = Indexable & {
   itemsPerPage: number;
   tableColumns: Indexable;
-  setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  setItemsPerPage: Dispatch<SetStateAction<number>>;
 };
-const dataContext = createContext<contextProps | null>(null);
-
-export { dataContext };
+export const dataContext = createContext<contextProps | null>(null);

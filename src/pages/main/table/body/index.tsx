@@ -1,19 +1,19 @@
-import { Box, Button, TableRow, Error, EmptyData } from "@/components";
-import type { Indexable } from "@/components/types";
-import { useFetch, useTimeout } from "@/hooks";
-import { AddCoin } from "@/dialogs";
-import "./style.css";
+import { Box, Button, EmptyData, Error, TableRow } from "components";
+import type { Indexable } from "components/types";
+import { dataContext } from "context";
+import { AddCoin } from "dialogs";
+import { useFetch, useTimeout } from "hooks";
+import { JSX, useContext, useEffect, useState } from "react";
 import {
   addEventListener,
   convertNumber,
   dispatchEvent,
   objectToQuery,
-  prepareData,
-} from "@/utils";
-import { dataContext } from "@/context";
-import { useEffect, useState, useContext } from "react";
-import React from "react";
+  prepareData
+} from "utils";
+import "./style.css";
 
+/*
 const recordsToShow = [
   "",
   "name",
@@ -22,6 +22,7 @@ const recordsToShow = [
   "marketCapUsd",
   "volumeUsd24Hr",
 ];
+*/
 
 type BodyProps = {
   sort: Indexable & {field: string, direction?: boolean},
@@ -32,8 +33,7 @@ type BodyProps = {
 }>>
 }
 
-const Default = (props: BodyProps): React.JSX.Element => {
-  const { sort, setSort, tableColumns } = props;
+export const TableBody = ({ sort, setSort, tableColumns }: BodyProps): JSX.Element => {
   const [query, setQuery] = useState({});
 
   const { itemsPerPage } = useContext(dataContext)!;
@@ -161,5 +161,3 @@ const Default = (props: BodyProps): React.JSX.Element => {
     </>
   );
 };
-
-export { Default as TableBody };

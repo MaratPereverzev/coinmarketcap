@@ -1,17 +1,9 @@
 {
   "compilerOptions": {
+    "preserveSymlinks": false,
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "rootDir": "src",
     "baseUrl": "src",
-    "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/pages/*": ["pages/*"],
-      "@/context/*": ["context/*"],
-      "@/utils/*": ["utils/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/dialogs/*": ["dialogs/*"]
-    },
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,

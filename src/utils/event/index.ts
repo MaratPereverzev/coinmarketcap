@@ -1,4 +1,4 @@
-import type { Indexable } from "@/components/types";
+import type { Indexable } from "components/types";
 
 const addEventListener = (
   name: string,

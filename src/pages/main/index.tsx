@@ -1,11 +1,11 @@
+import { JSX } from "react";
 import { Table } from "./table";
-import React from "react"
 
 type MainProps = {
   itemsPerPage: number;
 }
 
-const Main = (props?: MainProps): React.JSX.Element => {
+const Main = (props?: MainProps): JSX.Element => {
   return (
     <>
       <Table sxBox={{ margin: "0 20px" }} />
@@ -14,3 +14,4 @@ const Main = (props?: MainProps): React.JSX.Element => {
 };
 
 export { Main };
+

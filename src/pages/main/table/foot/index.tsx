@@ -1,11 +1,11 @@
-import { Box, Button, Pagination, Popover, Text } from "@/components";
-import { dataContext } from "@/context";
-import { dispatchEvent } from "@/utils";
-import React, { useContext } from "react";
+import { Box, Button, Pagination, Popover, Text } from "components";
+import { dataContext } from "context";
+import { JSX, useContext } from "react";
+import { dispatchEvent } from "utils";
 
 const itemsPerPageArr = [100, 50, 25];
 
-const Default = ():React.JSX.Element => {
+export const TableFoot = (): JSX.Element => {
   const { itemsPerPage, setItemsPerPage } = useContext(dataContext)!;
 
   return (
@@ -61,6 +61,4 @@ const Default = ():React.JSX.Element => {
     </Box>
   );
 };
-
-export { Default as Foot };
 

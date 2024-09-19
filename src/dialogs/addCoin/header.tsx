@@ -1,12 +1,8 @@
-import { Box, Text } from "@/components";
-import { Indexable } from "@/components/types";
-import React from "react"
+import { Box, Text } from "components";
+import { Indexable } from "components/types";
+import { JSX } from "react";
 
-type HeaderProps = {
-  data: Indexable
-}
-const Header = (props: HeaderProps): React.JSX.Element => {
-  const { data } = props;
+export const Header = ({ data }: Indexable): JSX.Element => {
   const date = new Date();
 
   return (
@@ -38,5 +34,3 @@ const Header = (props: HeaderProps): React.JSX.Element => {
     </Box>
   );
 };
-
-export default Header;

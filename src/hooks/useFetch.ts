@@ -1,8 +1,8 @@
-import { Indexable } from "@/components/types";
+import { Indexable } from "components/types";
 import axios, { AxiosResponse } from "axios";
 import { useCallback, useState, useRef } from "react";
 
-const Default = (defOptions = {}) => {
+export const useFetch = (defOptions: Indexable = {}) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AxiosResponse | null>(null);
   const [error, setError] = useState(false);
@@ -26,5 +26,3 @@ const Default = (defOptions = {}) => {
 
   return { response, loading, error, fetchData };
 };
-
-export { Default as useFetch };

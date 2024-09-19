@@ -1,14 +1,12 @@
-import { Box, Chart, Error, Loading } from "@/components";
-import { useFetch } from "@/hooks";
+import { Box, Chart, Error, Loading } from "components";
+import { useFetch } from "hooks";
 import { useEffect } from "react";
-import React from "react"
 
 type CoinAdditionalDataProps = {
   urlCoin?: string
 }
 
-const CoinAdditionalData = (props: CoinAdditionalDataProps) => {
-  const { urlCoin } = props;
+export const CoinAdditionalData = ({ urlCoin }: CoinAdditionalDataProps) => {
   const { response, fetchData, error, loading } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
     method: "GET",
@@ -20,6 +18,7 @@ const CoinAdditionalData = (props: CoinAdditionalDataProps) => {
       url: `https://api.coincap.io/v2/assets/${urlCoin}/history?interval=d1`,
     });
   }, [urlCoin, fetchData]);
+
   return (
     <Box
       flex
@@ -41,5 +40,3 @@ const CoinAdditionalData = (props: CoinAdditionalDataProps) => {
     </Box>
   );
 };
-
-export default CoinAdditionalData;

@@ -1,19 +1,21 @@
-import { Box, Snackbar, Dialog } from "@/components";
-import { Page } from "@/pages";
-import React from "react"
+import { Box, Dialog, Snackbar } from "components";
+import { Page } from "pages";
+import { JSX } from "react";
 
-const Dashboard = (): React.JSX.Element => {
+const DashboardSx = {
+  fontFamily:
+    "Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif",
+  width: "100%",
+  height: "100%",
+}
+
+export const Dashboard = (): JSX.Element => {
   return (
     <Box
       flex
       column
       className="App"
-      sx={{
-        fontFamily:
-          "Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif",
-        width: "100%",
-        height: "100%",
-      }}
+      sx={DashboardSx}
     >
       <Dialog />
       <Snackbar />
@@ -21,5 +23,3 @@ const Dashboard = (): React.JSX.Element => {
     </Box>
   );
 };
-
-export default Dashboard;

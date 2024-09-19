@@ -1,11 +1,11 @@
-import { Box } from "@/components";
-import { dataContext } from "@/context";
+import { Box } from "components";
+import { dataContext } from "context";
+import { JSX, useEffect, useRef, useState } from "react";
 import {
   addEventListener, getLocalStorageValue,
   getPageHash, setPageHash
-} from "@/utils";
-import React, { useEffect, useRef, useState } from "react";
-import Coin from "./coin";
+} from "utils";
+import { Coin } from "./coin";
 import { Header } from "./header";
 import { Main } from "./main";
 
@@ -19,7 +19,7 @@ const tableColumns = [
   { name: "Volume(24h)", field: "volumeUsd24Hr", direction: true },
 ];
 
-const Default = (): React.JSX.Element => {
+const Default = (): JSX.Element => {
   const urlCoin = useRef("");
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const [page, setPage] = useState(

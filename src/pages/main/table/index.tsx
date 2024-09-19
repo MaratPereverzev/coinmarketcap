@@ -1,11 +1,10 @@
-import { Table, Box } from "@/components";
+import { Box, Table as TableComponent} from "components";
+import { sxProp } from "components/types";
+import { dataContext } from "context";
+import { JSX, useContext, useState } from "react";
 import { TableBody } from "./body";
+import { TableFoot } from "./foot";
 import { TableHead } from "./head";
-import { Foot } from "./foot";
-import { useState, useContext } from "react";
-import { dataContext } from "@/context";
-import React from "react"
-import { sxProp } from "@/components/types";
 
 type TableProps = {
   [index: string | symbol]: sxProp | undefined;
@@ -13,7 +12,7 @@ type TableProps = {
   sxBox?: sxProp;
 }
 
-const Default = (props: TableProps): React.JSX.Element => {
+export const Table = (props: TableProps): JSX.Element => {
   const { sx, sxBox } = props;
   const {tableColumns} = useContext(dataContext)!;
 
@@ -24,7 +23,7 @@ const Default = (props: TableProps): React.JSX.Element => {
 
   return (
     <Box flex column center sx={{ ...sxBox }}>
-      <Table
+      <TableComponent
         sx={{
           backgroundColor: "white",
           fontWeight: "700",
@@ -41,9 +40,8 @@ const Default = (props: TableProps): React.JSX.Element => {
           />
         }
       />
-      <Foot />
+      <TableFoot />
     </Box>
   );
 };
 
-export { Default as Table };

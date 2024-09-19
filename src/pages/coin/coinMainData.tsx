@@ -1,8 +1,7 @@
-import { Box, Button, Chip, Text } from "@/components";
-import { Indexable } from "@/components/types";
-import { AddCoin } from "@/dialogs";
-import { convertNumber, dispatchEvent } from "@/utils";
-import React from "react";
+import { Box, Button, Chip, Text } from "components";
+import { Indexable } from "components/types";
+import { AddCoin } from "dialogs";
+import { convertNumber, dispatchEvent } from "utils";
 
 const dataRows = [
   { name: "Market Cap.", field: "marketCapUsd" },
@@ -15,9 +14,7 @@ type CoinMainDataProps = {
   data: Indexable
 }
 
-const CoinMainData = (props: CoinMainDataProps) => {
-  const { data } = props;
-
+export const CoinMainData = ({ data }: CoinMainDataProps) => {
   return (
     <Box
       flex
@@ -89,5 +86,3 @@ const CoinMainData = (props: CoinMainDataProps) => {
     </Box>
   );
 };
-
-export default CoinMainData;

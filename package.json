@@ -1,5 +1,6 @@
 {
   "homepage": "https://maratpereverzev.github.io/coinmarketcap",
+  "proxy": "https://api.coincap.io",
   "name": "coinmarketcap",
   "version": "0.1.0",
   "private": true,
@@ -15,7 +16,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^22.5.5",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.3",
     "babel-jest": "^27.4.2",
@@ -37,7 +38,6 @@
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
@@ -72,7 +72,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "craco start",
+    "start": "react-scripts start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

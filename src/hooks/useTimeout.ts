@@ -1,8 +1,8 @@
-import { Indexable } from "@/components/types";
+import { Indexable } from "components/types";
 import { useEffect, useRef, useCallback } from "react";
 const { setTimeout, clearTimeout } = window;
 
-const Default = (callback: (data?: any) => void, delay: number) => {
+export const useTimeout = (callback: (data?: any) => void, delay: number) => {
   const callbackRef = useRef(callback);
   const callbackTimeoutRef = useRef<number>(
     setTimeout(() => callbackRef.current(), delay)
@@ -35,5 +35,3 @@ const Default = (callback: (data?: any) => void, delay: number) => {
 
   return { timeoutDispatch, timeoutClear, timeoutReset };
 };
-
-export { Default as useTimeout };

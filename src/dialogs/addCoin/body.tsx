@@ -1,8 +1,7 @@
-import { Box, Button, Text } from "@/components";
-import type { Indexable } from "@/components/types";
-import { convertNumber} from "@/utils";
-import { useState } from "react";
-import React from "react";
+import { Box, Button, Text } from "components";
+import type { Indexable } from "components/types";
+import { JSX, useState } from "react";
+import { convertNumber } from "utils";
 
 const buttonSx = {
   variant: "text",
@@ -14,8 +13,12 @@ const buttonSx = {
   sxText: { margin: 0 },
 };
 
-const Body = (props: Indexable): React.JSX.Element => {
-  const { data } = props;
+const textSx = {
+  fontWeight: "900", 
+  fontSize: "18px"
+}
+
+export const Body = ({ data }: Indexable): JSX.Element => {
   const [count, setCount] = useState(1);
 
   return (
@@ -43,11 +46,9 @@ const Body = (props: Indexable): React.JSX.Element => {
         <Text caption="Total" />
         <Text
           caption={convertNumber(count * data?.priceUsd)}
-          sx={{ fontWeight: "900", fontSize: "18px" }}
+          sx={textSx}
         />
       </Box>
     </Box>
   );
 };
-
-export default Body;

@@ -26,7 +26,7 @@ const prepareData = (
 ): void => {
   arr?.sort(function (item1, item2) {
     let result;
-    if (sort.direction === true) {
+    if (sort.direction) {
       result =
         Number.parseFloat(item2[sort.field]) -
         Number.parseFloat(item1[sort.field]);

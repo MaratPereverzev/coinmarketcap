@@ -1,7 +1,7 @@
-import { TableRow, Box, Button, Icon } from "@/components";
-import type { Indexable } from "@/components/types";
-import { dispatchEvent } from "@/utils";
-import React from "react"
+import { Box, Button, Icon, TableRow } from "components";
+import type { Indexable } from "components/types";
+import React from "react";
+import { dispatchEvent } from "utils";
 
 type HeadProps = {
   sort: Indexable & {
@@ -10,9 +10,7 @@ type HeadProps = {
 },
   tableColumns: Indexable
 }
-const Default = (props: HeadProps): React.JSX.Element => {
-  const { sort, tableColumns } = props;
-
+export const TableHead = ({ sort, tableColumns }: HeadProps): React.JSX.Element => {
   return (
     <TableRow
       items={tableColumns.map((item: Indexable) => {
@@ -63,4 +61,3 @@ const Default = (props: HeadProps): React.JSX.Element => {
   );
 };
 
-export { Default as TableHead };

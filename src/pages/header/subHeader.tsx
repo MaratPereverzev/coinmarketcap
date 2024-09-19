@@ -1,10 +1,10 @@
-import { Box, Error, Text } from "@/components";
-import type { Indexable } from "@/components/types";
-import { useFetch, useTimeout } from "@/hooks";
-import { convertNumber } from "@/utils";
-import React, { useEffect } from "react";
+import { Box, Error, Text } from "components";
+import type { Indexable } from "components/types";
+import { useFetch, useTimeout } from "hooks";
+import { JSX, useEffect } from "react";
+import { convertNumber } from "utils";
 
-const SubHeader = (): React.JSX.Element => {
+const SubHeader = (): JSX.Element => {
   const { response, fetchData, error, loading } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets?limit=3",
     method: "GET",
@@ -24,6 +24,7 @@ const SubHeader = (): React.JSX.Element => {
   });
 
   const data = response?.data?.data;
+  
   return (
     <Box flex jc ai gap="30px">
       {(error && <Error />) ||

@@ -1,7 +1,6 @@
-import { Box, Button } from "@/components";
-import type { ButtonProps } from "@/components/button";
-import { dispatchEvent } from "@/utils";
-import React from "react"
+import { Box, Button } from "components";
+import type { ButtonProps } from "components/Button";
+import { dispatchEvent } from "utils";
 
 const buttonProps: ButtonProps = {
   variant: "text",
@@ -12,7 +11,7 @@ const buttonProps: ButtonProps = {
   },
 };
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <Box flex jc="flex-end" gap="5px">
       <Button
@@ -36,5 +35,3 @@ const Footer = () => {
     </Box>
   );
 };
-
-export default Footer;

@@ -1,17 +1,15 @@
-import { Box, Loading, Error } from "@/components";
-import { useFetch, useTimeout } from "@/hooks";
+import { Box, Error, Loading } from "components";
+import { useFetch, useTimeout } from "hooks";
 import { useEffect } from "react";
-import CoinAdditionalData from "./coinAdditionalData";
-import CoinMainData from "./coinMainData";
-import React from "react"
+import { CoinAdditionalData } from "./coinAdditionalData";
+import { CoinMainData } from "./coinMainData";
 import "./styles.css";
 
 type CoinProps = {
   urlCoin?: string
 }
-const Coin = (props: CoinProps) => {
-  const { urlCoin } = props;
 
+export const Coin = ({ urlCoin }: CoinProps) => {
   const { response, fetchData, loading, error } = useFetch({
     baseURL: "https://api.coincap.io/v2/assets",
     method: "GET",
@@ -45,5 +43,3 @@ const Coin = (props: CoinProps) => {
     </Box>
   );
 };
-
-export default Coin;
